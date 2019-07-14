@@ -1,0 +1,21 @@
+<form [formGroup]="form">
+    <p>CARS</p>
+  <mat-form-field>
+    <input  type="text" matInput [formControl]="form.controls['car']" [matAutocomplete]="matCars">
+  </mat-form-field>
+  <mat-autocomplete #matCars="matAutocomplete">
+    <mat-option *ngFor="let car of carList" [value]="car.name">
+      {{ car.name }}
+    </mat-option>
+  </mat-autocomplete>
+  <p>Filter cars</p>
+  <mat-form-field>
+    <input placeholder="Pick one"  type="text" matInput [formControl]="form.controls['carFilter']" [matAutocomplete]="matCarsFilter">
+  </mat-form-field>
+  <mat-autocomplete #matCarsFilter="matAutocomplete">
+    <mat-option *ngFor="let car of filteredCars | async" [value]="car.name">
+      {{ car.name }}
+    </mat-option>
+  </mat-autocomplete>
+</form>
+
